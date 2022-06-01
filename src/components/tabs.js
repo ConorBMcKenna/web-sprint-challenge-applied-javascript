@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-const topics = ["javascript","bootstrap","technology","jquery","node.js"]
+// const topics = ["javascript","bootstrap","technology","jquery","node.js"]
 
 const Tabs = (topics) => {
   // TASK 3
@@ -43,33 +43,16 @@ const tabsAppender = (selector) => {
   // Append the tabs to the element in the DOM that matches the selector passed to the function.
   //
 
-//   const element = document.getElementsByClassName(selector)[0];
+  // const topics = ["javascript","bootstrap","technology","jquery","node.js"]
 
-  
-//  const  url_string = "http://localhost:5001/api/topics";
-//   fetch(url_string).then((r)=>{r.text().then((d)=>{
-//       let topics = ["javascript","bootstrap","technology","jquery","node.js"];
-//       console.log(topics);
-//       topics_data=tabs(topics);
-//       element.appendChild(topics_data);
-//   })})
-// }
-
-// for (let i = 0; i < topics.length; i++){
-//     axios.get('http://localhost:5001/api/topics/')
-//     .then (resp => {
-//       document.querySelector('.tabs-container').appendChild(Tabs(resp.data))
-//     })
+  axios.get('http://localhost:5001/api/topics')
+  .then(({ data }) => {
+    const topics = Object.values(data.topics).flat()
+    console.log(topics)
+    const container = document.querySelector(selector)
+    container.append(Tabs(topics))
+  })
   }
-
-
-
-
-
-
-
-
-
 
 
 export { Tabs, tabsAppender }
